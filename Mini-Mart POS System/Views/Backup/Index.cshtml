@@ -1,0 +1,92 @@
+@model IEnumerable<MiniMartPOS.Models.Backup>
+@{
+    ViewData["Title"] = "Backup Management";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Backup Management</h2>
+    <div>
+        <form asp-action="CreateBackup" method="post" class="d-inline">
+            <button type="submit" class="btn btn-success"><i class="bi bi-cloud-download"></i> Create Backup</button>
+        </form>
+        <form asp-action="Cleanup" method="post" class="d-inline">
+            <button type="submit" class="btn btn-warning"><i class="bi bi-trash"></i> Cleanup Old</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Backup History</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>Date</th>
+                                <th>Size</th>
+                                <th>Type</th>
+                                <th>User</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var backup in Model)
+                            {
+                                <tr>
+                                    <td>@backup.FileName</td>
+                                    <td>@backup.BackupDate.ToString("yyyy-MM-dd HH:mm")</td>
+                                    <td>@(backup.FileSize / 1024) KB</td>
+                                    <td>
+                                        @if (backup.BackupType == "Automatic")
+                                        {
+                                            <span class="badge bg-info">Auto</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success">Manual</span>
+                                        }
+                                    </td>
+                                    <td>@backup.User?.FullName</td>
+                                    <td>
+                                        <a asp-action="Download" asp-route-id="@backup.Id" class="btn btn-sm btn-primary"><i class="bi bi-download"></i></a>
+                                        <form asp-action="Delete" asp-route-id="@backup.Id" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this backup?')">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Restore Backup</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Restore" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label">Select Backup File</label>
+                        <input type="file" name="file" class="form-control" accept=".zip" required />
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        Warning: Restoring a backup will overwrite all current data. This action cannot be undone.
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">Restore Backup</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

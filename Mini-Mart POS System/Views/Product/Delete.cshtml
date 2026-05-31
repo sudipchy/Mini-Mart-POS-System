@@ -1,0 +1,44 @@
+@model MiniMartPOS.Models.Product
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<h2>Delete Product</h2>
+
+<div class="alert alert-warning">
+    <i class="bi bi-exclamation-triangle"></i>
+    Are you sure you want to delete this product?
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Barcode:</dt>
+            <dd class="col-sm-9">@Model.Barcode</dd>
+            
+            <dt class="col-sm-3">Product Name:</dt>
+            <dd class="col-sm-9">@Model.ProductName</dd>
+            
+            <dt class="col-sm-3">Category:</dt>
+            <dd class="col-sm-9">@Model.Category?.CategoryName</dd>
+            
+            <dt class="col-sm-3">Purchase Price:</dt>
+            <dd class="col-sm-9">Rs. @Model.PurchasePrice.ToString("N2")</dd>
+            
+            <dt class="col-sm-3">Selling Price:</dt>
+            <dd class="col-sm-9">Rs. @Model.SellingPrice.ToString("N2")</dd>
+            
+            <dt class="col-sm-3">Stock Quantity:</dt>
+            <dd class="col-sm-9">@Model.StockQty</dd>
+            
+            <dt class="col-sm-3">Supplier:</dt>
+            <dd class="col-sm-9">@Model.Supplier?.SupplierName</dd>
+        </dl>
+        
+        <form asp-action="DeleteConfirmed" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

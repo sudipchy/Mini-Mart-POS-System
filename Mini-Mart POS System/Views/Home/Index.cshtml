@@ -1,0 +1,170 @@
+@model MiniMartPOS.Models.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row dashboard-cards">
+    <div class="col-md-3">
+        <div class="card stat-card sales-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="card-title">Today's Sales</h6>
+                        <h3 class="card-text">Rs. @Model.TodaySales.ToString("N2")</h3>
+                        <small class="text-white"><i class="bi bi-currency-dollar"></i> Revenue</small>
+                    </div>
+                    <div class="icon-box">
+                        <i class="bi bi-currency-dollar"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card profit-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="card-title">Today's Profit</h6>
+                        <h3 class="card-text">Rs. @Model.TodayProfit.ToString("N2")</h3>
+                        <small class="text-white"><i class="bi bi-graph-up-arrow"></i> Net Profit</small>
+                    </div>
+                    <div class="icon-box">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card products-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="card-title">Total Products</h6>
+                        <h3 class="card-text">@Model.TotalProducts</h3>
+                        <small class="text-white"><i class="bi bi-box-seam"></i> In Inventory</small>
+                    </div>
+                    <div class="icon-box">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card alert-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="card-title">Low Stock Alerts</h6>
+                        <h3 class="card-text">@Model.LowStockAlerts</h3>
+                        <small class="text-white"><i class="bi bi-exclamation-triangle"></i> Need Attention</small>
+                    </div>
+                    <div class="icon-box">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row quick-actions">
+    <div class="col-12">
+        <h4 class="section-title">Quick Actions</h4>
+    </div>
+    <div class="col-md-2">
+        <a asp-controller="Product" asp-action="Create" class="action-btn">
+            <i class="bi bi-plus-circle"></i>
+            <span>Add Product</span>
+        </a>
+    </div>
+    <div class="col-md-2">
+        <a asp-controller="POS" asp-action="Index" class="action-btn">
+            <i class="bi bi-cart-check"></i>
+            <span>New Sale</span>
+        </a>
+    </div>
+    <div class="col-md-2">
+        <a asp-controller="Inventory" asp-action="StockIn" class="action-btn">
+            <i class="bi bi-arrow-down-circle"></i>
+            <span>Stock In</span>
+        </a>
+    </div>
+    <div class="col-md-2">
+        <a asp-controller="Report" asp-action="Index" class="action-btn">
+            <i class="bi bi-file-earmark-pdf"></i>
+            <span>Reports</span>
+        </a>
+    </div>
+    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+    {
+        <div class="col-md-2">
+            <a asp-controller="Backup" asp-action="Index" class="action-btn">
+                <i class="bi bi-cloud-download"></i>
+                <span>Backup</span>
+            </a>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Recent Transactions</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Invoice #</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var sale in Model.RecentTransactions)
+                        {
+                            <tr>
+                                <td>@sale.InvoiceNumber</td>
+                                <td>@sale.SaleDate.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>@sale.SaleDetails.Count</td>
+                                <td>Rs. @sale.GrandTotal.ToString("N2")</td>
+                                <td><span class="badge bg-success">Completed</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Low Stock Products</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    @foreach (var product in Model.LowStockProducts)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @product.ProductName
+                            @if (product.StockQty == 0)
+                            {
+                                <span class="badge bg-danger rounded-pill">Out of Stock</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning rounded-pill">@product.StockQty left</span>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

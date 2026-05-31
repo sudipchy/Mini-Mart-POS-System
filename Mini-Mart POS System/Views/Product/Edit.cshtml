@@ -1,0 +1,105 @@
+@model MiniMartPOS.Models.Product
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h2>Edit Product</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Barcode" class="form-control" placeholder="Barcode" />
+                        <label asp-for="Barcode">Barcode</label>
+                        <span asp-validation-for="Barcode" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="ProductName" class="form-control" placeholder="Product Name" />
+                        <label asp-for="ProductName">Product Name</label>
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <select asp-for="CategoryId" class="form-select" asp-items="@(new SelectList(ViewBag.Categories, "Id", "CategoryName"))">
+                            <option value="">Select Category</option>
+                        </select>
+                        <label asp-for="CategoryId">Category</label>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <select asp-for="SupplierId" class="form-select" asp-items="@(new SelectList(ViewBag.Suppliers, "Id", "SupplierName"))">
+                            <option value="">Select Supplier</option>
+                        </select>
+                        <label asp-for="SupplierId">Supplier</label>
+                        <span asp-validation-for="SupplierId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="PurchasePrice" class="form-control" placeholder="Purchase Price" />
+                        <label asp-for="PurchasePrice">Purchase Price</label>
+                        <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="SellingPrice" class="form-control" placeholder="Selling Price" />
+                        <label asp-for="SellingPrice">Selling Price</label>
+                        <span asp-validation-for="SellingPrice" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="StockQty" class="form-control" placeholder="Stock Quantity" />
+                        <label asp-for="StockQty">Stock Quantity</label>
+                        <span asp-validation-for="StockQty" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="MinimumStock" class="form-control" placeholder="Minimum Stock" />
+                        <label asp-for="MinimumStock">Minimum Stock</label>
+                        <span asp-validation-for="MinimumStock" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="ExpiryDate" type="date" class="form-control" placeholder="Expiry Date" />
+                        <label asp-for="ExpiryDate">Expiry Date</label>
+                        <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check mt-3">
+                        <input asp-for="Status" class="form-check-input" />
+                        <label asp-for="Status" class="form-check-label">Active</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Update Product</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

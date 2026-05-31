@@ -1,0 +1,39 @@
+@model MiniMartPOS.Models.ViewModels.StockTransactionViewModel
+@{
+    ViewData["Title"] = "Stock Out";
+}
+
+<h2>Stock Out</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="StockOut" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            
+            <div class="form-floating mb-3">
+                <select asp-for="ProductId" class="form-select" asp-items="@(new SelectList(ViewBag.Products, "Id", "ProductName"))">
+                    <option value="">Select Product</option>
+                </select>
+                <label asp-for="ProductId">Product</label>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="Quantity" class="form-control" placeholder="Quantity" />
+                <label asp-for="Quantity">Quantity</label>
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <textarea asp-for="Notes" class="form-control" placeholder="Notes" style="height: 100px;"></textarea>
+                <label asp-for="Notes">Notes</label>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-warning"><i class="bi bi-arrow-up-circle"></i> Stock Out</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

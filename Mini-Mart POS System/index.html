@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Mart POS System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="wwwroot/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="wwwroot/images/logo.svg" alt="Mini-Mart Logo" class="logo-img">
+                <span class="brand-text">Mini-Mart POS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="bi bi-house-door"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-cart3"></i> POS Billing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-box-seam"></i> Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-graph-up"></i> Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-gear"></i> Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-person-circle"></i> Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid main-content">
+        <!-- Dashboard Cards -->
+        <div class="row dashboard-cards">
+            <div class="col-md-3">
+                <div class="card stat-card sales-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title">Today's Sales</h6>
+                                <h3 class="card-text">Rs. 45,230</h3>
+                                <small class="text-success"><i class="bi bi-arrow-up"></i> 12% from yesterday</small>
+                            </div>
+                            <div class="icon-box sales-icon">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card profit-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title">Today's Profit</h6>
+                                <h3 class="card-text">Rs. 12,450</h3>
+                                <small class="text-success"><i class="bi bi-arrow-up"></i> 8% from yesterday</small>
+                            </div>
+                            <div class="icon-box profit-icon">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card products-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title">Total Products</h6>
+                                <h3 class="card-text">1,234</h3>
+                                <small class="text-info">15 categories</small>
+                            </div>
+                            <div class="icon-box products-icon">
+                                <i class="bi bi-box-seam"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card alert-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title">Low Stock Alerts</h6>
+                                <h3 class="card-text">23</h3>
+                                <small class="text-danger">Needs attention</small>
+                            </div>
+                            <div class="icon-box alert-icon">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row quick-actions">
+            <div class="col-12">
+                <h4 class="section-title">Quick Actions</h4>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="action-btn">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>Add Product</span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="action-btn">
+                    <i class="bi bi-cart-check"></i>
+                    <span>New Sale</span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="action-btn">
+                    <i class="bi bi-arrow-down-circle"></i>
+                    <span>Stock In</span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="action-btn">
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    <span>Reports</span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="action-btn">
+                    <i class="bi bi-cloud-download"></i>
+                    <span>Backup</span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="action-btn">
+                    <i class="bi bi-qr-code"></i>
+                    <span>QR Payment</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Recent Transactions</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Invoice #</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>INV-001</td>
+                                    <td>2026-05-31 08:30</td>
+                                    <td>5</td>
+                                    <td>Rs. 2,450</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INV-002</td>
+                                    <td>2026-05-31 08:15</td>
+                                    <td>3</td>
+                                    <td>Rs. 890</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INV-003</td>
+                                    <td>2026-05-31 07:45</td>
+                                    <td>8</td>
+                                    <td>Rs. 5,670</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INV-004</td>
+                                    <td>2026-05-31 07:20</td>
+                                    <td>2</td>
+                                    <td>Rs. 340</td>
+                                    <td><span class="badge bg-warning">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Low Stock Products</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Milk (1L)
+                                <span class="badge bg-danger rounded-pill">3 left</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Bread
+                                <span class="badge bg-danger rounded-pill">5 left</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Eggs (12 pcs)
+                                <span class="badge bg-warning rounded-pill">8 left</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Rice (5kg)
+                                <span class="badge bg-warning rounded-pill">10 left</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Cooking Oil (1L)
+                                <span class="badge bg-danger rounded-pill">2 left</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2026 Mini-Mart POS System. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>Version 1.0.0 | <span class="backup-status"><i class="bi bi-check-circle text-success"></i> Backup: Completed</span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="wwwroot/js/main.js"></script>
+</body>
+</html>

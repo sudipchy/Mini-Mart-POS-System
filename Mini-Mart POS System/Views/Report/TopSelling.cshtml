@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Top Selling Products";
+}
+
+<h2>Top Selling Products Report</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="TopSelling" method="post">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="number" name="topCount" class="form-control" value="10" min="1" max="100" required />
+                        <label>Top Count</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary mt-2">Generate Report</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Daily Sales Report";
+}
+
+<h2>Daily Sales Report</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="DailySales" method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="date" name="date" class="form-control" required />
+                        <label>Select Date</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary mt-2">Generate Report</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

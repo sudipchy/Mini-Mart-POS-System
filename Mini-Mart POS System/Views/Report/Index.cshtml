@@ -1,0 +1,89 @@
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h2>Reports</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card report-card">
+            <div class="card-body text-center">
+                <i class="bi bi-calendar-day report-icon"></i>
+                <h4>Daily Sales Report</h4>
+                <p>Generate daily sales report with transaction details</p>
+                <a asp-action="DailySales" class="btn btn-primary">Generate</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card report-card">
+            <div class="card-body text-center">
+                <i class="bi bi-calendar-month report-icon"></i>
+                <h4>Monthly Sales Report</h4>
+                <p>Generate monthly sales summary report</p>
+                <a asp-action="MonthlySales" class="btn btn-primary">Generate</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card report-card">
+            <div class="card-body text-center">
+                <i class="bi bi-box-seam report-icon"></i>
+                <h4>Stock Report</h4>
+                <p>Generate current inventory stock report</p>
+                <a asp-action="Stock" class="btn btn-primary">Generate</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card report-card">
+            <div class="card-body text-center">
+                <i class="bi bi-trophy report-icon"></i>
+                <h4>Top Selling Products</h4>
+                <p>View top selling products report</p>
+                <a asp-action="TopSelling" class="btn btn-primary">Generate</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card report-card">
+            <div class="card-body text-center">
+                <i class="bi bi-graph-up report-icon"></i>
+                <h4>Profit Report</h4>
+                <p>Generate profit analysis report</p>
+                <a asp-action="Profit" class="btn btn-primary">Generate</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card report-card">
+            <div class="card-body text-center">
+                <i class="bi bi-clock-history report-icon"></i>
+                <h4>Sales History</h4>
+                <p>View sales history by date range</p>
+                <a asp-action="SalesHistory" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .report-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        margin-bottom: 1.5rem;
+    }
+    
+    .report-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    .report-icon {
+        font-size: 3rem;
+        color: #FF6B35;
+        margin-bottom: 1rem;
+    }
+</style>

@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Profit Report";
+}
+
+<h2>Profit Report</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Profit" method="post">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="date" name="startDate" class="form-control" required />
+                        <label>Start Date</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="date" name="endDate" class="form-control" required />
+                        <label>End Date</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary mt-2">Generate Report</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

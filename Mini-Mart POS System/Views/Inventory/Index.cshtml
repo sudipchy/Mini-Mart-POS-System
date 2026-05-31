@@ -1,0 +1,60 @@
+@model IEnumerable<MiniMartPOS.Models.InventoryLog>
+@{
+    ViewData["Title"] = "Inventory Management";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Inventory Management</h2>
+    <div>
+        <a asp-action="StockIn" class="btn btn-success"><i class="bi bi-arrow-down-circle"></i> Stock In</a>
+        <a asp-action="StockOut" class="btn btn-warning"><i class="bi bi-arrow-up-circle"></i> Stock Out</a>
+        <a asp-action="Adjust" class="btn btn-info"><i class="bi bi-pencil-square"></i> Adjust Stock</a>
+        <a asp-action="OutOfStock" class="btn btn-danger"><i class="bi bi-x-circle"></i> Out of Stock</a>
+        <a asp-action="Expiring" class="btn btn-secondary"><i class="bi bi-clock-history"></i> Expiring</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Product</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Previous Stock</th>
+                        <th>New Stock</th>
+                        <th>User</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td>@item.Product?.ProductName</td>
+                            <td>
+                                @switch(item.TransactionType)
+                                {
+                                    case "Stock In": <span class="badge bg-success">@item.TransactionType</span>; break;
+                                    case "Stock Out": <span class="badge bg-warning">@item.TransactionType</span>; break;
+                                    case "Sale": <span class="badge bg-info">@item.TransactionType</span>; break;
+                                    case "Purchase": <span class="badge bg-primary">@item.TransactionType</span>; break;
+                                    default: <span class="badge bg-secondary">@item.TransactionType</span>; break;
+                                }
+                            </td>
+                            <td>@item.Quantity</td>
+                            <td>@item.PreviousStock</td>
+                            <td>@item.NewStock</td>
+                            <td>@item.User?.FullName</td>
+                            <td>@item.Notes</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

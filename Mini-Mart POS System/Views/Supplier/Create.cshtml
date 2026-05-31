@@ -1,0 +1,49 @@
+@model MiniMartPOS.Models.Supplier
+@{
+    ViewData["Title"] = "Add Supplier";
+}
+
+<h2>Add New Supplier</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="SupplierName" class="form-control" placeholder="Supplier Name" />
+                <label asp-for="SupplierName">Supplier Name</label>
+                <span asp-validation-for="SupplierName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="ContactPerson" class="form-control" placeholder="Contact Person" />
+                <label asp-for="ContactPerson">Contact Person</label>
+                <span asp-validation-for="ContactPerson" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="Phone" class="form-control" placeholder="Phone" />
+                <label asp-for="Phone">Phone</label>
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" placeholder="Email" />
+                <label asp-for="Email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <textarea asp-for="Address" class="form-control" placeholder="Address" style="height: 100px;"></textarea>
+                <label asp-for="Address">Address</label>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save Supplier</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+@model MiniMartPOS.Models.ViewModels.CreateUserViewModel
+@{
+    ViewData["Title"] = "Add User";
+}
+
+<h2>Add New User</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="Username" class="form-control" placeholder="Username" />
+                <label asp-for="Username">Username</label>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" placeholder="Email" />
+                <label asp-for="Email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="FullName" class="form-control" placeholder="Full Name" />
+                <label asp-for="FullName">Full Name</label>
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="Phone" class="form-control" placeholder="Phone" />
+                <label asp-for="Phone">Phone</label>
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <textarea asp-for="Address" class="form-control" placeholder="Address" style="height: 100px;"></textarea>
+                <label asp-for="Address">Address</label>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+                <label asp-for="Password">Password</label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <select asp-for="Role" class="form-select">
+                    <option value="Cashier">Cashier</option>
+                    <option value="StockClerk">Stock Clerk</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Admin">Admin</option>
+                    <option value="SuperAdmin">Super Admin</option>
+                </select>
+                <label asp-for="Role">Role</label>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save User</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

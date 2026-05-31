@@ -1,0 +1,110 @@
+@model MiniMartPOS.Models.Sale
+@{
+    ViewData["Title"] = "Receipt";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receipt - @Model.InvoiceNumber</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+        .total {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="~/images/logo.svg" class="logo" alt="Logo" />
+        <h2>Mini-Mart</h2>
+        <p>Your Local Shop</p>
+    </div>
+    
+    <div>
+        <p><strong>Invoice #:</strong> @Model.InvoiceNumber</p>
+        <p><strong>Date:</strong> @Model.SaleDate.ToString("yyyy-MM-dd HH:mm")</p>
+        <p><strong>Cashier:</strong> @Model.User?.FullName</p>
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SaleDetails)
+            {
+                <tr>
+                    <td>@item.Product?.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>Rs. @item.UnitPrice.ToString("N2")</td>
+                    <td>Rs. @item.Total.ToString("N2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <div>
+        <p>Subtotal: Rs. @Model.Subtotal.ToString("N2")</p>
+        <p>Discount: Rs. @Model.Discount.ToString("N2")</p>
+        <p>Tax: Rs. @Model.Tax.ToString("N2")</p>
+        <p class="total">Grand Total: Rs. @Model.GrandTotal.ToString("N2")</p>
+        <p>Paid: Rs. @Model.PaidAmount.ToString("N2")</p>
+        <p class="total">Change: Rs. @Model.ChangeAmount.ToString("N2")</p>
+        <p>Payment Method: @Model.PaymentMethod</p>
+    </div>
+    
+    @if (!string.IsNullOrEmpty(Model.Notes))
+    {
+        <p><strong>Notes:</strong> @Model.Notes</p>
+    }
+    
+    <div class="footer">
+        <p>Thank you for shopping with us!</p>
+        <p>Visit us again soon</p>
+    </div>
+    
+    <script>
+        window.print();
+    </script>
+</body>
+</html>

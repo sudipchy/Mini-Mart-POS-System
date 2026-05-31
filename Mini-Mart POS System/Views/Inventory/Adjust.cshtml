@@ -1,0 +1,39 @@
+@model MiniMartPOS.Models.ViewModels.StockAdjustmentViewModel
+@{
+    ViewData["Title"] = "Adjust Stock";
+}
+
+<h2>Adjust Stock</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Adjust" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            
+            <div class="form-floating mb-3">
+                <select asp-for="ProductId" class="form-select" asp-items="@(new SelectList(ViewBag.Products, "Id", "ProductName"))">
+                    <option value="">Select Product</option>
+                </select>
+                <label asp-for="ProductId">Product</label>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input asp-for="NewQuantity" class="form-control" placeholder="New Quantity" />
+                <label asp-for="NewQuantity">New Quantity</label>
+                <span asp-validation-for="NewQuantity" class="text-danger"></span>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <textarea asp-for="Notes" class="form-control" placeholder="Notes" style="height: 100px;"></textarea>
+                <label asp-for="Notes">Notes</label>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-info"><i class="bi bi-pencil-square"></i> Adjust Stock</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

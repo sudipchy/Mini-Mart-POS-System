@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background with shadow -->
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Orange background circle -->
+  <circle cx="100" cy="100" r="90" fill="#FF6B35" filter="url(#shadow)"/>
+  
+  <!-- White outline -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#FFF" stroke-width="3"/>
+  
+  <!-- Shopping bag -->
+  <g transform="translate(60, 45)">
+    <!-- Bag body -->
+    <rect x="10" y="30" width="60" height="70" rx="5" fill="#FF6B35" stroke="#000" stroke-width="2"/>
+    
+    <!-- Bag handle -->
+    <path d="M 25 30 Q 25 10 40 10 Q 55 10 55 30" fill="none" stroke="#000" stroke-width="3"/>
+    
+    <!-- Colorful items in bag -->
+    <!-- Blue item -->
+    <rect x="20" y="50" width="15" height="20" rx="2" fill="#4A90D9" stroke="#000" stroke-width="1"/>
+    <!-- Pink item -->
+    <rect x="38" y="45" width="12" height="25" rx="2" fill="#E91E63" stroke="#000" stroke-width="1"/>
+    <!-- Green item -->
+    <rect x="52" y="55" width="14" height="18" rx="2" fill="#4CAF50" stroke="#000" stroke-width="1"/>
+    
+    <!-- m² icon on bag -->
+    <text x="35" y="88" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000">m²</text>
+  </g>
+  
+  <!-- Text: mini in black -->
+  <text x="100" y="155" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#000" text-anchor="middle">mini</text>
+  
+  <!-- Text: MART in white -->
+  <text x="100" y="180" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFF" text-anchor="middle">MART</text>
+</svg>

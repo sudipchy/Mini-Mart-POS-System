@@ -1,0 +1,86 @@
+@model IEnumerable<MiniMartPOS.Models.Product>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Product Management</h2>
+    <div>
+        <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Add Product</a>
+        <a asp-action="Import" class="btn btn-success"><i class="bi bi-file-earmark-excel"></i> Import</a>
+        <a asp-action="Export" class="btn btn-info"><i class="bi bi-download"></i> Export</a>
+        <a asp-action="LowStock" class="btn btn-warning"><i class="bi bi-exclamation-triangle"></i> Low Stock</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Index" method="get" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search products..." value="@ViewBag.Search">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
+            </div>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Barcode</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Purchase Price</th>
+                        <th>Selling Price</th>
+                        <th>Stock</th>
+                        <th>Min Stock</th>
+                        <th>Supplier</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Barcode</td>
+                            <td>@item.ProductName</td>
+                            <td>@item.Category?.CategoryName</td>
+                            <td>Rs. @item.PurchasePrice.ToString("N2")</td>
+                            <td>Rs. @item.SellingPrice.ToString("N2")</td>
+                            <td>
+                                @if (item.StockQty == 0)
+                                {
+                                    <span class="badge bg-danger">0</span>
+                                }
+                                else if (item.StockQty <= item.MinimumStock)
+                                {
+                                    <span class="badge bg-warning">@item.StockQty</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">@item.StockQty</span>
+                                }
+                            </td>
+                            <td>@item.MinimumStock</td>
+                            <td>@item.Supplier?.SupplierName</td>
+                            <td>
+                                @if (item.Status)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Inactive</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

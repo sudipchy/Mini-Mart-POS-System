@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Sales History";
+}
+
+<h2>Sales History</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="SalesHistory" method="post">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="date" name="startDate" class="form-control" required />
+                        <label>Start Date</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="date" name="endDate" class="form-control" required />
+                        <label>End Date</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary mt-2">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="salesHistoryResult">
+    <!-- Results will be loaded here -->
+</div>
